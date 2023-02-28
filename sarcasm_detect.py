@@ -36,15 +36,12 @@ col2, col3 = st.columns(2)
 
 
 def handle_input_text():
-    print(len(text))
     if len(text) != 0:
-        print(text)
         input_sentences = tokenizer.texts_to_sequences([text])
         input_padded_sentences = pad_sequences(input_sentences, maxlen=max_length, padding=padding_type,
                                                truncating=trunc_type)
         probs = model.predict(input_padded_sentences)
         preds = f"{int(np.round(probs))}"
-        print(preds)
         if preds == '1':
             col3.write("Sarcastic")
         else:
